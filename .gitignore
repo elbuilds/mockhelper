@@ -1,0 +1,11 @@
+# backup files
+*~
+*.swp
+
+# tags
+.tags*
+tags*
+
+# log
+*.log
+
