@@ -32,7 +32,8 @@ REL_FMT='%{release}'
   do
     _log="${_dir}/build.log"
     _srpm=$(find "$_dir" -type f -name '*src.rpm')
-    _rpms=( $(find "$_dir" -type f | grep -P '(?<!\.src).rpm') )
+    _rpms=( $(find "$_dir" -type f  \
+              | grep -P '(?<!\.src).rpm' | grep -v -- '-debuginfo-') )
     _name=$(rpm -qp --qf "$NAME_FMT" "$_srpm")
     _ver=$(rpm -qp --qf "$VER_FMT" "$_srpm")
     _rel=$(rpm -qp --qf "$REL_FMT" "$_srpm")
