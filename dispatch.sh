@@ -36,8 +36,7 @@ REL_FMT='%{release}'
               | grep -P '(?<!\.src).rpm' | grep -v -- '-debuginfo-') )
     _name=$(rpm -qp --qf "$NAME_FMT" "$_srpm")
     _ver=$(rpm -qp --qf "$VER_FMT" "$_srpm")
-    _rel=$(rpm -qp --qf "$REL_FMT" "$_srpm")
-    _rel=${_rel%%${DIST}}
+    _rel=$(rpm -qp --qf "$REL_FMT" "$_srpm" | grep -oP '^\d+?(?=\.)')
     _subdir="${_name}/${_ver}-${_rel}"
 
     if [[ ! -d "${_spkgsdir}/${_subdir}" ]]
