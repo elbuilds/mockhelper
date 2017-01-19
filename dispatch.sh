@@ -8,6 +8,7 @@ RELEASEVER=${RELEASEVER:-7}
 DISTFLAG='.elbuilds'
 COPYLOG=1
 
+RDIR=$(dirname $(readlink -f $0))
 DIST=$(rpm --eval %{dist})
 KEY_DIR='pki/rpm-gpg'
 KEY_FILE='RPM-GPG-KEY-elbuilds'
@@ -58,5 +59,5 @@ REL_FMT='%{release}'
   done
 
   # No need to deal with return value because '-e' has set.
-} 2>&1 | tee dispatch.log
+} 2>&1 | tee "${RDIR}/dispatch.log"
 
