@@ -39,13 +39,13 @@ REL_FMT='%{release}'
     _rel=$(rpm -qp --qf "$REL_FMT" "$_srpm" | grep -oP '^\d+?(?=\.)')
     _subdir="${_name}/${_ver}-${_rel}"
 
-    if [[ ! -d "${_spkgsdir}/${_subdir}" ]]
+    if [[ ! -d "${_spkgsdir}/${_subdir}" && -n "$_srpm" ]]
     then
       mkdir -p "${_spkgsdir}/${_subdir}"
       cp -f "$_srpm" "${_spkgsdir}/${_subdir}"
     fi
 
-    if [[ ! -d "${_pkgsdir}/${_subdir}" ]]
+    if [[ ! -d "${_pkgsdir}/${_subdir}" && ${#_rpms[@]} > 0 ]]
     then
       mkdir -p "${_pkgsdir}/${_subdir}"
       cp -f ${_rpms[@]} "${_pkgsdir}/${_subdir}"
