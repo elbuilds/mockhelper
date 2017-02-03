@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Usage: RELEASEVER=7 ./dispatch.sh <mockchain-outdir> <elbuilds-rootdir>
+# Usage: RELEASEVER=7 ./dispatch.sh <elbuilds-rootdir> <mockchain-outdir>
 # ==============================================================================
 set -ex
 
@@ -17,8 +17,8 @@ VER_FMT='%{version}'
 REL_FMT='%{release}'
 
 {
-  _outdir="$1"
-  _rootdir="$2"
+  _rootdir="$1"
+  _outdir="$2"
   _spkgsdir="${_rootdir}/${RELEASEVER}/Source/SPackages"
   _pkgsdir="${_rootdir}/${RELEASEVER}/x86_64/Packages"
   _dirs=( )
